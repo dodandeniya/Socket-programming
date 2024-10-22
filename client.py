@@ -23,8 +23,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
     
     # Keep sending and receiving data
     while True:
-        message = input("Enter message to send (or 'exit' to quit): ")
-        if message.lower() == 'exit':
+        message = input("Enter message to send (or 'terminate' to quit): ")
+        if message.lower() == 'terminate':
             break
         
         # Send data
