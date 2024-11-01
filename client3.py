@@ -1,5 +1,8 @@
 """
-To run: python client3.py --host 127.0.0.1 --port 3000 --type sub topic TopicA,TopicB
+To run: 
+    python client3.py --host 127.0.0.1 --port 3000 --type sub --topic TopicA,TopicB
+or
+    python client3.py --host 127.0.0.1 --port 3000 --type pub --topic TopicA 
 """
 
 import socket
@@ -79,13 +82,10 @@ def receive_messages(client_socket):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Publish/Subscribe TCP Client")
-    parser.add_argument('--host', type=str,
-                        default='127.0.0.1', help='Server IP address')
+    parser.add_argument('--host', type=str, default='127.0.0.1', help='Server IP address')
     parser.add_argument('--port', type=int, default=6500, help='Server port')
-    parser.add_argument('--type', type=str, required=True,
-                        choices=['pub', 'sub'], help='Client type: publisher or subscriber')
-    parser.add_argument('--topic', type=str,
-                        help='Optional topic for publishing or subscribing')
+    parser.add_argument('--type', type=str, required=True, choices=['pub', 'sub'], help='Client type: publisher or subscriber')
+    parser.add_argument('--topic', type=str, help='Optional topic for publishing or subscribing')
 
     args = parser.parse_args()
     topics = args.topic.split(',') if args.topic else []
